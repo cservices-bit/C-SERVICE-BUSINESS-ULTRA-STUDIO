@@ -1,394 +1,1227 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="C-SERVICE BUSINESS — ULTRA STUDIO : Studio cinéma et multimédia premium en RDC. Réalisations, formations, montage vidéo professionnel, création digitale.">
+  <meta name="keywords" content="cinéma, vidéo, montage, réalisateur, studio, RDC, formation, Adobe, DaVinci, création digitale">
+  <meta name="author" content="Cianney">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="C-SERVICE BUSINESS — ULTRA STUDIO">
+  <meta property="og:description" content="Transformons vos idées en œuvres cinématographiques.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://via.placeholder.com/1200x630?text=C-SERVICE+ULTRA+STUDIO">
+  <meta property="og:url" content="https://c-service-studio.com">
+  <meta name="twitter:card" content="summary_large_image">
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231e3a8a'/%3E%3Ctext x='50' y='67' font-size='50' text-anchor='middle' fill='white' font-weight='bold'%3ECS%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231e3a8a'/%3E%3Ctext x='50' y='67' font-size='50' text-anchor='middle' fill='white' font-weight='bold'%3ECS%3C/text%3E%3C/svg%3E">
+  
+  <title>C-SERVICE BUSINESS | Ultra Studio Cinéma RDC</title>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  <title>C-SERVICE BUSINESS — ULTRA STUDIO</title>
+    body {
+      font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Inter', sans-serif;
+      background: #0a0a0a;
+      color: #ffffff;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
 
-  <meta name="description" content="Studio multimédia ultra premium en RDC spécialisé en vidéo, cinéma, montage et création digitale." />
-  <meta name="keywords" content="vidéaste RDC, montage vidéo, cinéma, studio, C-SERVICE BUSINESS, réalisateur" />
-  <meta name="author" content="Cianney" />
+    /* Loader premium */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0a0a0a, #1a1a2e);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .loader.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .loader-content {
+      text-align: center;
+    }
+    .loader-circle {
+      width: 80px;
+      height: 80px;
+      border: 4px solid rgba(229,9,20,0.2);
+      border-top: 4px solid #e50914;
+      border-right: 4px solid #3b82f6;
+      border-radius: 50%;
+      animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    }
+    .loader-text {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, #e50914, #3b82f6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
-  <meta property="og:title" content="C-SERVICE BUSINESS — ULTRA STUDIO" />
-  <meta property="og:description" content="Transformons vos idées en œuvres cinématographiques." />
-  <meta property="og:type" content="website" />
+    /* Dark/Light mode */
+    body.light {
+      background: #f5f5f7;
+      color: #111;
+    }
+    body.light section {
+      background: #ffffff;
+    }
+    body.light .card, body.light .video-card, body.light .logiciel-card, 
+    body.light .course-card, body.light .business-card {
+      background: #fff;
+      color: #111;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    body.light .navbar {
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+    body.light .navbar a {
+      color: #111;
+    }
 
-  <link rel="icon" href="assets/logo.png" />
-  <link rel="stylesheet" href="style.css" />
+    /* Glassmorphism */
+    .glass {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    section {
+      padding: 80px 5%;
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    h1, h2, h3 {
+      font-weight: 700;
+    }
+    h2 {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, #e50914, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+      position: relative;
+    }
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #e50914, #3b82f6);
+      border-radius: 2px;
+    }
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    .container {
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    /* Hero Section avec Particle Effect */
+    .hero {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    #particle-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    .hero-content {
+      z-index: 2;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: 5rem;
+      letter-spacing: -2px;
+      animation: fadeInUp 1s ease;
+    }
+    .typewriter {
+      font-size: 2rem;
+      border-right: 3px solid #e50914;
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: blinkCursor 0.8s infinite;
+    }
+    @keyframes blinkCursor {
+      0%, 100% { border-color: #e50914; }
+      50% { border-color: transparent; }
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-buttons {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-premium {
+      background: linear-gradient(135deg, #e50914, #b80610);
+      border: none;
+      padding: 14px 36px;
+      font-weight: bold;
+      border-radius: 50px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-premium::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    .btn-premium:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    .btn-premium:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(229,9,20,0.4);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid white;
+      padding: 12px 34px;
+      border-radius: 50px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-outline:hover {
+      background: white;
+      color: #e50914;
+      transform: translateY(-2px);
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+      background: rgba(0,0,0,0.9);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: all 0.3s;
+    }
+    .navbar.scrolled {
+      padding: 10px 5%;
+      background: rgba(0,0,0,0.95);
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(135deg, #fff, #e50914);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #e50914;
+      transition: width 0.3s;
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    .menu-mobile {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+    @media (max-width: 860px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: rgba(0,0,0,0.95);
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        backdrop-filter: blur(10px);
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .menu-mobile {
+        display: block;
+      }
+      .hero h1 { font-size: 2.5rem; }
+      .typewriter { font-size: 1.2rem; white-space: normal; }
+      h2 { font-size: 2rem; }
+    }
+
+    /* Grilles */
+    .videos-grid, .portfolio-grid, .logiciels-grid, .courses-grid, .business-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .video-card, .portfolio-item, .logiciel-card, .course-card, .business-card {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+    .video-card:hover, .portfolio-item:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(229,9,20,0.3);
+    }
+    .video-card iframe, .video-card video {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .video-info, .portfolio-info {
+      padding: 1.5rem;
+    }
+    .video-actions {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+    }
+    .like-btn, .comment-btn {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    /* Filtres */
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+    .filter-btn {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      padding: 10px 24px;
+      border-radius: 50px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .filter-btn.active {
+      background: linear-gradient(135deg, #e50914, #b80610);
+    }
+    .filter-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Slider Actualités */
+    .news-slider {
+      overflow: hidden;
+      background: linear-gradient(90deg, #1a1a2e, #16213e);
+      padding: 20px;
+      border-radius: 20px;
+      position: relative;
+    }
+    .news-track {
+      display: inline-flex;
+      animation: scrollNews 30s linear infinite;
+      gap: 30px;
+    }
+    .news-track:hover {
+      animation-play-state: paused;
+    }
+    .news-item {
+      background: rgba(255,255,255,0.05);
+      padding: 15px 25px;
+      border-radius: 60px;
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      backdrop-filter: blur(5px);
+    }
+    @keyframes scrollNews {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Admin Panel */
+    .admin-panel {
+      background: linear-gradient(135deg, #1e1e2f, #1a1a2e);
+      padding: 25px;
+      border-radius: 20px;
+      margin-top: 30px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: none;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 1rem;
+    }
+    body.light input, body.light textarea {
+      background: #f0f0f0;
+      color: #111;
+    }
+
+    /* Statistiques animées */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    .stat-card {
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(229,9,20,0.1), rgba(59,130,246,0.1));
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+    }
+    .stat-number {
+      font-size: 3rem;
+      font-weight: bold;
+      background: linear-gradient(135deg, #e50914, #3b82f6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Chatbot IA */
+    .chatbot {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #e50914, #3b82f6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+    .chatbot:hover {
+      transform: scale(1.1);
+    }
+    .chat-window {
+      position: fixed;
+      bottom: 180px;
+      right: 30px;
+      width: 300px;
+      background: #1a1a2e;
+      border-radius: 20px;
+      display: none;
+      flex-direction: column;
+      z-index: 1001;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .chat-window.active {
+      display: flex;
+    }
+    .chat-header {
+      background: linear-gradient(135deg, #e50914, #3b82f6);
+      padding: 15px;
+      border-radius: 20px 20px 0 0;
+      font-weight: bold;
+    }
+    .chat-messages {
+      height: 300px;
+      overflow-y: auto;
+      padding: 15px;
+    }
+    .chat-input {
+      padding: 10px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      gap: 10px;
+    }
+    .chat-input input {
+      flex: 1;
+      margin: 0;
+    }
+
+    /* Back to top & controls */
+    #backTop, #darkModeToggle {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: linear-gradient(135deg, #e50914, #b80610);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 999;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      transition: all 0.3s;
+    }
+    #darkModeToggle {
+      bottom: 100px;
+      background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+    }
+    #backTop:hover, #darkModeToggle:hover {
+      transform: translateY(-5px);
+    }
+
+    footer {
+      background: linear-gradient(135deg, #010101, #1a1a2e);
+      text-align: center;
+      padding: 40px;
+    }
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: linear-gradient(135deg, #e50914, #3b82f6);
+      padding: 12px 24px;
+      border-radius: 50px;
+      z-index: 2000;
+      animation: slideInLeft 0.5s ease;
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-100px);}
+      to { opacity: 1; transform: translateX(0);}
+    }
+
+    /* Progress bar for courses */
+    .course-progress {
+      width: 100%;
+      height: 5px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 5px;
+      margin: 10px 0;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #e50914, #3b82f6);
+      width: 0%;
+      transition: width 0.5s;
+    }
+  </style>
 </head>
 <body>
-
-<div id="loader">
-  <div class="loader-logo">C-SERVICE</div>
+<div class="loader" id="loader">
+  <div class="loader-content">
+    <div class="loader-circle"></div>
+    <div class="loader-text">C-SERVICE ULTRA STUDIO</div>
+  </div>
 </div>
 
-<header>
-  <nav class="navbar">
-    <div class="logo">C-SERVICE BUSINESS</div>
+<nav class="navbar" id="navbar">
+  <div class="logo">🎬 C-SERVICE | ULTRA STUDIO</div>
+  <div class="menu-mobile" id="menuToggle">☰</div>
+  <div class="nav-links" id="navLinks">
+    <a href="#home" data-i18n="navHome">Accueil</a>
+    <a href="#videos" data-i18n="navVideos">Vidéos</a>
+    <a href="#portfolio" data-i18n="navPortfolio">Portfolio</a>
+    <a href="#academie" data-i18n="navAcademie">Académie</a>
+    <a href="#logiciels" data-i18n="navLogiciels">Logiciels</a>
+    <a href="#business" data-i18n="navBusiness">Business</a>
+    <a href="#contact" data-i18n="navContact">Contact</a>
+    <select id="langSwitcher" style="background:#222;color:white;border:none;padding:5px 10px;border-radius:20px;">
+      <option value="fr">🇫🇷 FR</option>
+      <option value="en">🇬🇧 EN</option>
+      <option value="sw">🇹🇿 SW</option>
+    </select>
+    <button id="authBtn" style="background:#e50914;border:none;padding:8px 16px;border-radius:25px;cursor:pointer;">Connexion</button>
+  </div>
+</nav>
 
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#hero">Accueil</a></li>
-      <li><a href="#videos">Vidéos</a></li>
-      <li><a href="#academy">Académie</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#business">Business</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-
-    <div class="nav-actions">
-      <button id="darkToggle"><i class="fa-solid fa-moon"></i></button>
-
-      <select id="languageSwitcher">
-        <option value="fr">FR</option>
-        <option value="en">EN</option>
-        <option value="sw">SW</option>
-      </select>
-
-      <div class="menu-toggle" id="menuToggle">
-        <i class="fa-solid fa-bars"></i>
-      </div>
-    </div>
-  </nav>
-</header>
-
-<section class="hero" id="hero">
-  <video autoplay muted loop playsinline class="hero-video">
-    <source src="assets/hero.mp4" type="video/mp4">
-  </video>
-
-  <div class="overlay"></div>
-
+<!-- Hero Section avec Canvas Particles -->
+<section id="home" class="hero">
+  <canvas id="particle-canvas"></canvas>
   <div class="hero-content">
-    <h1>C-SERVICE BUSINESS — ULTRA STUDIO</h1>
-
-    <h2 class="typing-text">Transformons vos idées en œuvres cinématographiques.</h2>
-
-    <p>
-      Studio multimédia moderne spécialisé dans le cinéma, le montage vidéo,
-      les clips, la publicité, le business digital et la création premium.
-    </p>
-
+    <h1>C-SERVICE BUSINESS<br>— ULTRA STUDIO</h1>
+    <div class="typewriter" id="typewriter"></div>
     <div class="hero-buttons">
-      <a href="#portfolio" class="btn primary">Voir les réalisations</a>
-      <a href="#contact" class="btn secondary">Nous contacter</a>
-      <a href="#academy" class="btn glow">Télécharger le portfolio</a>
+      <button class="btn-premium" onclick="scrollToSection('portfolio')">Voir réalisations</button>
+      <button class="btn-premium" onclick="scrollToSection('contact')">Nous contacter</button>
+      <button class="btn-outline" id="downloadPortfolioBtn">📁 Télécharger portfolio</button>
+      <button class="btn-outline" onclick="uploadProject()">📤 Soumettre mon projet</button>
     </div>
   </div>
 </section>
 
-<section class="stats">
-  <div class="stat-card">
-    <h3 class="counter" data-target="250">0</h3>
-    <p>Projets Réalisés</p>
-  </div>
-
-  <div class="stat-card">
-    <h3 class="counter" data-target="120">0</h3>
-    <p>Clients satisfaits</p>
-  </div>
-
-  <div class="stat-card">
-    <h3 class="counter" data-target="35">0</h3>
-    <p>Formations</p>
-  </div>
-
-  <div class="stat-card">
-    <h3 class="counter" data-target="10000">0</h3>
-    <p>Visiteurs</p>
-  </div>
-</section>
-
-<section class="videos" id="videos">
-  <div class="section-title">
-    <h2>Galerie Vidéo Premium</h2>
-  </div>
-
-  <div class="filters">
-    <button class="active">Tous</button>
-    <button>Mariage</button>
-    <button>Clips musicaux</button>
-    <button>Église</button>
-    <button>Publicité</button>
-    <button>Documentaire</button>
-    <button>Business</button>
-  </div>
-
-  <div class="video-grid">
-    <div class="video-card">
-      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-      <h3>Projet Cinéma</h3>
-    </div>
-
-    <div class="video-card">
-      <video controls>
-        <source src="assets/demo.mp4" type="video/mp4">
-      </video>
-      <h3>Publicité Premium</h3>
+<!-- Statistiques animées -->
+<section id="stats">
+  <div class="container">
+    <h2>📊 Notre Impact</h2>
+    <div class="stats-container">
+      <div class="stat-card"><div class="stat-number" id="stat1">0</div><div>Projets Réalisés</div></div>
+      <div class="stat-card"><div class="stat-number" id="stat2">0</div><div>Clients Satisfaits</div></div>
+      <div class="stat-card"><div class="stat-number" id="stat3">0</div><div>Heures de Formation</div></div>
+      <div class="stat-card"><div class="stat-number" id="stat4">0</div><div>Prix Remportés</div></div>
     </div>
   </div>
 </section>
 
-<section class="news-slider">
-  <div class="section-title">
-    <h2>Actualités Live</h2>
-  </div>
-
-  <div class="news-container" id="newsContainer"></div>
-
-  <div class="admin-panel">
-    <h3>Publier une actualité</h3>
-
-    <input type="text" id="newsTitle" placeholder="Titre">
-    <input type="text" id="newsImage" placeholder="URL image">
-    <textarea id="newsDesc" placeholder="Description"></textarea>
-
-    <button onclick="publishNews()">Publier</button>
+<!-- Vidéos avec filtres, likes et commentaires -->
+<section id="videos">
+  <div class="container">
+    <h2>🎥 Galerie Cinéma</h2>
+    <div class="filter-buttons" id="filterContainer"></div>
+    <div class="videos-grid" id="videosGrid"></div>
   </div>
 </section>
 
-<section class="academy" id="academy">
-  <div class="section-title">
-    <h2>Académie C-SERVICE</h2>
-  </div>
-
-  <div class="academy-grid">
-
-    <div class="academy-card">
-      <h3>Montage Vidéo PRO</h3>
-      <p>Apprenez Adobe Premiere Pro et After Effects.</p>
-      <div class="progress-bar">
-        <span style="width:70%"></span>
-      </div>
-      <button>Commencer</button>
+<!-- Actualités automatiques + Admin -->
+<section id="news">
+  <div class="container">
+    <h2>📰 Actualités Studio</h2>
+    <div class="news-slider">
+      <div class="news-track" id="newsTrack"></div>
     </div>
-
-    <div class="academy-card">
-      <h3>Business Digital</h3>
-      <p>Créer une activité rentable sur internet.</p>
-      <div class="progress-bar">
-        <span style="width:50%"></span>
-      </div>
-      <button>Commencer</button>
-    </div>
-
-    <div class="academy-card">
-      <h3>Tournage Cinéma</h3>
-      <p>Maîtrisez les techniques modernes de tournage.</p>
-      <div class="progress-bar">
-        <span style="width:90%"></span>
-      </div>
-      <button>Commencer</button>
-    </div>
-
-  </div>
-</section>
-
-<section class="software-section">
-  <div class="section-title">
-    <h2>Logiciels Professionnels</h2>
-  </div>
-
-  <div class="software-grid">
-
-    <div class="software-card">
-      <img src="https://cdn.worldvectorlogo.com/logos/adobe-premiere-pro-cc-icon.svg">
-      <h3>Adobe Premiere Pro</h3>
-      <p>Montage vidéo professionnel.</p>
-      <span>Niveau : Expert</span>
-      <button>Découvrir</button>
-    </div>
-
-    <div class="software-card">
-      <img src="https://cdn.worldvectorlogo.com/logos/after-effects-1.svg">
-      <h3>After Effects</h3>
-      <p>Effets spéciaux et motion design.</p>
-      <span>Niveau : Avancé</span>
-      <button>Découvrir</button>
-    </div>
-
-    <div class="software-card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/DaVinci_Resolve_Studio.png">
-      <h3>DaVinci Resolve</h3>
-      <p>Color grading cinéma.</p>
-      <span>Niveau : Pro</span>
-      <button>Découvrir</button>
-    </div>
-
-  </div>
-</section>
-
-<section class="auth-section">
-  <div class="section-title">
-    <h2>Compte Utilisateur</h2>
-  </div>
-
-  <div class="auth-container">
-
-    <input type="text" id="username" placeholder="Nom utilisateur">
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Mot de passe">
-
-    <button onclick="registerUser()">Inscription</button>
-    <button onclick="loginUser()">Connexion</button>
-    <button onclick="logoutUser()">Déconnexion</button>
-
-    <div id="profileBox"></div>
-  </div>
-</section>
-
-<section class="business" id="business">
-  <div class="section-title">
-    <h2>Business & Opportunités</h2>
-  </div>
-
-  <div class="business-form">
-    <input type="text" id="businessTitle" placeholder="Nom du business">
-    <input type="text" id="businessPrice" placeholder="Prix">
-    <input type="text" id="businessImage" placeholder="Image URL">
-    <textarea id="businessDescription" placeholder="Description"></textarea>
-
-    <button onclick="publishBusiness()">Publier</button>
-  </div>
-
-  <div class="business-grid" id="businessGrid"></div>
-</section>
-
-<section class="portfolio" id="portfolio">
-  <div class="section-title">
-    <h2>Portfolio Ultra Cinéma</h2>
-  </div>
-
-  <div class="portfolio-grid">
-
-    <div class="portfolio-card">
-      <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1200&auto=format&fit=crop">
-      <div class="portfolio-overlay">
-        <h3>Production Cinéma</h3>
-      </div>
-    </div>
-
-    <div class="portfolio-card">
-      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop">
-      <div class="portfolio-overlay">
-        <h3>Clip Musical</h3>
-      </div>
-    </div>
-
-    <div class="portfolio-card">
-      <img src="https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?q=80&w=1200&auto=format&fit=crop">
-      <div class="portfolio-overlay">
-        <h3>Documentaire</h3>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section class="faq-section">
-  <div class="section-title">
-    <h2>FAQ</h2>
-  </div>
-
-  <div class="faq-item">
-    <button class="faq-question">Quels services proposez-vous ?</button>
-    <div class="faq-answer">
-      <p>Montage vidéo, tournage cinéma, publicité, business digital et formation.</p>
-    </div>
-  </div>
-
-  <div class="faq-item">
-    <button class="faq-question">Travaillez-vous à distance ?</button>
-    <div class="faq-answer">
-      <p>Oui, partout en RDC et à l’international.</p>
+    <div class="admin-panel">
+      <h3>➕ Panneau Admin - Publier une actualité</h3>
+      <input type="text" id="newsTitle" placeholder="Titre de l'actualité">
+      <input type="text" id="newsImage" placeholder="URL de l'image">
+      <textarea id="newsDesc" placeholder="Description" rows="3"></textarea>
+      <button id="publishNewsBtn" class="btn-premium">📢 Publier l'actualité</button>
     </div>
   </div>
 </section>
 
-<section class="testimonials">
-  <div class="section-title">
-    <h2>Témoignages Clients</h2>
-  </div>
-
-  <div class="testimonial-grid">
-
-    <div class="testimonial-card">
-      <p>
-        “Travail incroyable, qualité cinéma exceptionnelle.”
-      </p>
-      <h4>Client Premium</h4>
-    </div>
-
-    <div class="testimonial-card">
-      <p>
-        “Le meilleur studio digital moderne.”
-      </p>
-      <h4>Entreprise RDC</h4>
-    </div>
-
+<!-- Académie avec progression -->
+<section id="academie">
+  <div class="container">
+    <h2>🎓 Académie C-SERVICE</h2>
+    <div class="courses-grid" id="coursesGrid"></div>
   </div>
 </section>
 
-<section class="contact" id="contact">
-  <div class="section-title">
-    <h2>Contact Ultra Pro</h2>
+<!-- Logiciels de montage -->
+<section id="logiciels">
+  <div class="container">
+    <h2>⚙️ Logiciels de montage PRO</h2>
+    <div class="logiciels-grid" id="logicielsGrid"></div>
   </div>
+</section>
 
-  <div class="contact-grid">
+<!-- Portfolio ultra cinéma -->
+<section id="portfolio">
+  <div class="container">
+    <h2>🏆 Portfolio Ultra Cinéma</h2>
+    <input type="text" id="portfolioSearch" placeholder="🔍 Rechercher un projet..." style="margin-bottom:20px;">
+    <div class="portfolio-grid" id="portfolioGrid"></div>
+  </div>
+</section>
 
-    <div class="contact-info">
-      <h3>C-SERVICE BUSINESS</h3>
-
-      <p><i class="fa-brands fa-whatsapp"></i> +243 850406200</p>
-      <p><i class="fa-solid fa-envelope"></i> Cianney029@gmail.com</p>
-
-      <a href="https://wa.me/243850406200" target="_blank" class="btn primary">
-        WhatsApp Direct
-      </a>
+<!-- Business & opportunités -->
+<section id="business">
+  <div class="container">
+    <h2>💼 Business & Opportunités</h2>
+    <div class="business-grid" id="businessGrid"></div>
+    <div class="admin-panel">
+      <h3>➕ Publier une offre business</h3>
+      <input id="bizName" placeholder="Titre de l'offre">
+      <input id="bizPrice" placeholder="Prix">
+      <input id="bizImg" placeholder="URL image">
+      <textarea id="bizDesc" placeholder="Description"></textarea>
+      <button id="publishBizBtn" class="btn-premium">💼 Publier l'offre</button>
     </div>
+  </div>
+</section>
 
-    <form class="contact-form">
-      <input type="text" placeholder="Votre nom">
-      <input type="email" placeholder="Votre email">
-      <textarea placeholder="Votre message"></textarea>
-      <button type="submit">Envoyer</button>
+<!-- Contact ultra pro -->
+<section id="contact">
+  <div class="container">
+    <h2>📞 Contact Ultra Pro</h2>
+    <p>📱 WhatsApp : <a href="https://wa.me/243850406200" style="color:#25D366;">+243 850 406 200</a></p>
+    <p>📧 Email : <a href="mailto:Cianney029@gmail.com">Cianney029@gmail.com</a></p>
+    <form id="contactForm">
+      <input type="text" placeholder="Votre nom" required>
+      <input type="email" placeholder="Votre email" required>
+      <textarea placeholder="Votre message" rows="5" required></textarea>
+      <button type="submit" class="btn-premium">✉️ Envoyer le message</button>
     </form>
-
+    <div style="height:250px;background:linear-gradient(135deg,#1a1a2e,#16213e);margin-top:20px;border-radius:20px;display:flex;align-items:center;justify-content:center;">
+      📍 Kinshasa, RDC - Studio Ultra Pro
+    </div>
   </div>
-
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18"
-    loading="lazy">
-  </iframe>
 </section>
 
 <footer>
-  <h3>C-SERVICE BUSINESS — ULTRA STUDIO</h3>
-  <p>Transformons vos idées en œuvres cinématographiques.</p>
+  <p>© 2025 C-SERVICE BUSINESS — ULTRA STUDIO | Dirigé par Cianney</p>
+  <p style="margin-top:10px;">"Transformons vos idées en œuvres cinématographiques."</p>
+  <div style="margin-top:20px;">
+    <a href="#" style="color:white;margin:0 10px;">📷 Instagram</a>
+    <a href="#" style="color:white;margin:0 10px;">🎬 YouTube</a>
+    <a href="#" style="color:white;margin:0 10px;">📘 Facebook</a>
+  </div>
 </footer>
 
-<button id="backToTop">
-  <i class="fa-solid fa-arrow-up"></i>
-</button>
+<button id="backTop">⬆️</button>
+<button id="darkModeToggle">🌓</button>
 
-<div class="assistant-ai">
-  <button onclick="toggleAssistant()">
-    <i class="fa-solid fa-robot"></i>
-  </button>
-
-  <div class="assistant-box" id="assistantBox">
-    <h3>Assistant IA</h3>
-    <p>Bienvenue chez C-SERVICE BUSINESS.</p>
+<div class="chatbot" id="chatbot">🤖</div>
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">🤖 Assistant IA C-SERVICE</div>
+  <div class="chat-messages" id="chatMessages">
+    <div>👋 Bonjour ! Je suis l'assistant IA. Comment puis-je vous aider ?</div>
+  </div>
+  <div class="chat-input">
+    <input type="text" id="chatInput" placeholder="Votre message...">
+    <button id="sendChat" style="background:#e50914;border:none;padding:0 15px;border-radius:10px;">Envoyer</button>
   </div>
 </div>
 
-<script src="script.js"></script>
+<script>
+  // ======================== PARTICLES EFFECT ========================
+  const canvas = document.getElementById('particle-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  
+  function createParticles() {
+    particles = [];
+    for(let i = 0; i < 100; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 2 + 1,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        color: `rgba(229,9,20,${Math.random() * 0.5})`
+      });
+    }
+  }
+  
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      if(p.x < 0) p.x = canvas.width;
+      if(p.x > canvas.width) p.x = 0;
+      if(p.y < 0) p.y = canvas.height;
+      if(p.y > canvas.height) p.y = 0;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+    });
+    requestAnimationFrame(animateParticles);
+  }
+  
+  window.addEventListener('resize', () => {
+    resizeCanvas();
+    createParticles();
+  });
+  resizeCanvas();
+  createParticles();
+  animateParticles();
+
+  // ======================== MULTILANGUE ========================
+  const translations = {
+    fr: { heroSlogan: "Transformons vos idées en œuvres cinématographiques." },
+    en: { heroSlogan: "Transform your ideas into cinematic works." },
+    sw: { heroSlogan: "Badilisha mawazo yako kuwa kazi za sinema." }
+  };
+  let currentLang = "fr";
+  function updateLang() {
+    document.querySelector("#typewriter").innerHTML = translations[currentLang].heroSlogan;
+  }
+  document.getElementById("langSwitcher").addEventListener("change", (e) => {
+    currentLang = e.target.value;
+    updateLang();
+    showNotification(`Langue changée en ${currentLang.toUpperCase()}`);
+  });
+
+  // ======================== STATISTIQUES ANIMÉES ========================
+  function animateNumber(element, target) {
+    let current = 0;
+    const increment = target / 50;
+    const interval = setInterval(() => {
+      current += increment;
+      if(current >= target) {
+        element.textContent = target;
+        clearInterval(interval);
+      } else {
+        element.textContent = Math.floor(current);
+      }
+    }, 30);
+  }
+  
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        animateNumber(document.getElementById('stat1'), 250);
+        animateNumber(document.getElementById('stat2'), 180);
+        animateNumber(document.getElementById('stat3'), 1250);
+        animateNumber(document.getElementById('stat4'), 15);
+        statsObserver.disconnect();
+      }
+    });
+  });
+  statsObserver.observe(document.getElementById('stats'));
+
+  // ======================== DONNÉES ========================
+  const videoData = [
+    { title: "Mariage Élégance", category: "Mariage", embed: "https://www.youtube.com/embed/dQw4w9WgXcQ", likes: 45, comments: [] },
+    { title: "Clip Musical Afro", category: "Clips musicaux", embed: "https://www.youtube.com/embed/jNQXAC9IVRw", likes: 128, comments: [] },
+    { title: "Cérémonie Église", category: "Église", embed: "https://www.youtube.com/embed/3JZ_D3ELwOQ", likes: 67, comments: [] },
+    { title: "Publicité Télé", category: "Publicité", embed: "https://www.youtube.com/embed/2Vv-BfVoq4g", likes: 89, comments: [] },
+    { title: "Documentaire Nature", category: "Documentaire", embed: "https://www.youtube.com/embed/6Dh-RL__uN4", likes: 34, comments: [] }
+  ];
+  
+  const logiciels = [
+    { name:"Adobe Premiere Pro", level:"Expert", desc:"Montage professionnel standard de l'industrie", logo:"🎬", price:"Payant" },
+    { name:"After Effects", level:"Avancé", desc:"Effets visuels et motion design", logo:"✨", price:"Payant" },
+    { name:"DaVinci Resolve", level:"Pro", desc:"Étalonnage couleur et montage", logo:"🎨", price:"Gratuit" },
+    { name:"CapCut", level:"Débutant", desc:"Montage mobile rapide", logo:"📱", price:"Gratuit" },
+    { name:"Final Cut Pro", level:"Expert", desc:"Écosystème Apple performant", logo:"🍎", price:"Payant" },
+    { name:"Filmora", level:"Intermédiaire", desc:"Simple et puissant pour débutants", logo:"🎞️", price:"Payant" },
+    { name:"Photoshop", level:"Avancé", desc:"Design graphique et retouche", logo:"🖼️", price:"Payant" },
+    { name:"Lightroom", level:"Intermédiaire", desc:"Photographie et colorimétrie", logo:"📸", price:"Payant" }
+  ];
+  
+  const courses = [
+    { title:"Montage Vidéo Masterclass", lessons:12, pdf:"#", progress:0 },
+    { title:"Business Digital", lessons:8, pdf:"#", progress:0 },
+    { title:"Tournage Cinéma", lessons:15, pdf:"#", progress:0 },
+    { title:"Étalonnage Couleur", lessons:10, pdf:"#", progress:0 }
+  ];
+  
+  const portfolioItems = [
+    { type:"Mariage", title:"Mariage Luxe - Kinshasa", img:"https://picsum.photos/id/101/400/300", category:"mariage" },
+    { type:"Clip", title:"Clip Musical - Fally", img:"https://picsum.photos/id/102/400/300", category:"clip" },
+    { type:"Publicité", title:"Pub Télé - Orange", img:"https://picsum.photos/id/103/400/300", category:"pub" },
+    { type:"Documentaire", title:"Docu - Congo Nature", img:"https://picsum.photos/id/104/400/300", category:"documentaire" }
+  ];
+  
+  // ======================== RENDER VIDEOS AVEC LIKES & COMMS ========================
+  let activeFilter = "all";
+  function renderVideos() {
+    let filtered = activeFilter === "all" ? videoData : videoData.filter(v => v.category === activeFilter);
+    document.getElementById("videosGrid").innerHTML = filtered.map((v, idx) => `
+      <div class="video-card">
+        <iframe src="${v.embed}" frameborder="0" allowfullscreen></iframe>
+        <div class="video-info">
+          <h3>${v.title}</h3>
+          <p>${v.category}</p>
+          <div class="video-actions">
+            <button class="like-btn" onclick="likeVideo(${idx})">❤️ ${v.likes}</button>
+            <button class="comment-btn" onclick="addComment(${idx})">💬 ${v.comments.length}</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+  
+  window.likeVideo = (idx) => {
+    videoData[idx].likes++;
+    renderVideos();
+    showNotification("👍 Vous avez aimé cette vidéo !");
+  };
+  
+  window.addComment = (idx) => {
+    let comment = prompt("Votre commentaire :");
+    if(comment) {
+      videoData[idx].comments.push(comment);
+      renderVideos();
+      showNotification("Commentaire ajouté !");
+    }
+  };
+  
+  function renderFilters() {
+    let cats = [...new Set(videoData.map(v => v.category))];
+    document.getElementById("filterContainer").innerHTML = `
+      <button class="filter-btn ${activeFilter === 'all' ? 'active' : ''}" data-filter="all">Tous</button>
+      ${cats.map(c => `<button class="filter-btn ${activeFilter === c ? 'active' : ''}" data-filter="${c}">${c}</button>`).join('')}
+    `;
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        activeFilter = btn.dataset.filter;
+        renderFilters();
+        renderVideos();
+      });
+    });
+  }
+  
+  renderFilters();
+  renderVideos();
+  
+  // ======================== LOGICIELS ========================
+  document.getElementById("logicielsGrid").innerHTML = logiciels.map(l => `
+    <div class="logiciel-card" style="padding:25px;text-align:center;">
+      <div style="font-size:64px;">${l.logo}</div>
+      <h3>${l.name}</h3>
+      <p>${l.desc}</p>
+      <span style="display:inline-block;padding:5px 15px;background:rgba(229,9,20,0.2);border-radius:20px;">Niveau: ${l.level}</span>
+      <div style="margin-top:15px;">💰 ${l.price}</div>
+      <button class="btn-outline" style="margin-top:15px;">Découvrir</button>
+    </div>
+  `).join('');
+  
+  // ======================== COURS AVEC PROGRESSION ========================
+  function loadCourseProgress() {
+    courses.forEach((course, idx) => {
+      let saved = localStorage.getItem(`course_${idx}`);
+      if(saved) course.progress = parseInt(saved);
+    });
+  }
+  
+  function renderCourses() {
+    document.getElementById("coursesGrid").innerHTML = courses.map((c, idx) => `
+      <div class="course-card" style="padding:25px;">
+        <h3>${c.title}</h3>
+        <p>📚 ${c.lessons} leçons</p>
+        <div class="course-progress">
+          <div class="progress-bar" style="width: ${c.progress}%"></div>
+        </div>
+        <p style="font-size:0.9rem;">Progression: ${c.progress}%</p>
+        <button class="btn-premium" onclick="startCourse(${idx})">▶️ Continuer</button>
+        <button class="btn-outline" onclick="downloadPDF('${c.pdf}')">📄 Télécharger PDF</button>
+      </div>
+    `).join('');
+  }
+  
+  window.startCourse = (idx) => {
+    let newProgress = prompt(`Progression actuelle: ${courses[idx].progress}%\nEntrez nouvelle progression (0-100):`, courses[idx].progress);
+    if(newProgress !== null && !isNaN(newProgress) && newProgress >= 0 && newProgress <= 100) {
+      courses[idx].progress = parseInt(newProgress);
+      localStorage.setItem(`course_${idx}`, courses[idx].progress);
+      renderCourses();
+      showNotification(`Progression mise à jour: ${courses[idx].progress}%`);
+    }
+  };
+  
+  window.downloadPDF = (url) => {
+    showNotification("📄 Téléchargement du PDF démarré...");
+    // Simulation de téléchargement
+    alert("Le PDF sera disponible sous 24h. Contactez-nous sur WhatsApp.");
+  };
+  
+  loadCourseProgress();
+  renderCourses();
+  
+  // ======================== PORTFOLIO AVEC RECHERCHE ========================
+  function renderPortfolio(searchTerm = "") {
+    let filtered = portfolioItems.filter(p => p.title.toLowerCase().includes(searchTerm.toLowerCase()) || p.category.toLowerCase().includes(searchTerm.toLowerCase()));
+    document.getElementById("portfolioGrid").innerHTML = filtered.map(p => `
+      <div class="portfolio-item">
+        <img src="${p.img}" style="width:100%;height:250px;object-fit:cover;">
+        <div class="portfolio-info">
+          <h3>${p.title}</h3>
+          <p>${p.type}</p>
+        </div>
+      </div>
+    `).join('');
+  }
+  
+  document.getElementById("portfolioSearch").addEventListener("input", (e) => {
+    renderPortfolio(e.target.value);
+  });
+  renderPortfolio();
+  
+  // ======================== ACTUALITÉS ========================
+  let newsItems = JSON.parse(localStorage.getItem("newsItems")) || [
+    { img: "https://picsum.photos/id/20/80/80", title: "🎬 Nouveau film en production", desc: "Sortie prévue 2025", date: "2025-03-01" },
+    { img: "https://picsum.photos/id/21/80/80", title: "🏆 Prix du meilleur studio", desc: "C-SERVICE récompensé", date: "2025-02-15" }
+  ];
+  
+  function renderNewsSlider() {
+    let dup = [...newsItems, ...newsItems];
+    document.getElementById("newsTrack").innerHTML = dup.map(n => `
+      <div class="news-item">
+        <img src="${n.img}" width="50" height="50" style="border-radius:50%;object-fit:cover;">
+        <div>
+          <b>${n.title}</b><br>
+          <small>${n.date}</small>
+          <p style="font-size:0.8rem;">${n.desc}</p>
+        </div>
+      </div>
+    `).join('');
+  }
+  
+  document.getElementById("publishNewsBtn").addEventListener("click", () => {
+    let title = document.getElementById("newsTitle").value;
+    let img = document.getElementById("newsImage").value;
+    let desc = document.getElementById("newsDesc").value;
+    if(title && img && desc) {
+      newsItems.unshift({ img, title, desc, date: new Date().toLocaleDateString() });
+      localStorage.setItem("newsItems", JSON.stringify(newsItems));
+      renderNewsSlider();
+      showNotification("✅ Actualité publiée avec succès !");
+      document.getElementById("newsTitle").value = "";
+      document.getElementById("newsImage").value = "";
+      document.getElementById("newsDesc").value = "";
+    } else {
+      alert("Veuillez remplir tous les champs");
+    }
+  });
+  renderNewsSlider();
+  
+  // ======================== BUSINESS ========================
+  let bizItems = JSON.parse(localStorage.getItem("bizItems")) || [
+    { title: "Pack Film Mariage", price: "$500", img: "https://picsum.photos/id/30/200/150", desc: "Montage complet + teaser" },
+    { title: "Clip Musical", price: "$800", img: "https://picsum.photos/id/31/200/150", desc: "Réalisation et post-production" }
+  ];
+  
+  function renderBusiness() {
+    document.getElementById("businessGrid").innerHTML = bizItems.map(b => `
+      <div class="business-card" style="padding:20px;">
+        <img src="${b.img}" style="width:100%;height:150px;object-fit:cover;border-radius:10px;">
+        <h3>${b.title}</h3>
+        <p>${b.desc}</p>
+        <strong style="font-size:1.5rem;color:#e50914;">${b.price}</strong>
+        <button class="btn-premium" onclick="window.open('https://wa.me/243850406200','_blank')">Contact WhatsApp</button>
+      </div>
+    `).join('');
+  }
+  
+  document.getElementById("publishBizBtn").addEventListener("click", () => {
+    let title = document.getElementById("bizName").value;
+    let price = document.getElementById("bizPrice").value;
+    let img = document.getElementById("bizImg").value;
+    let desc = document.getElementById("bizDesc").value;
+    if(title && price && img && desc) {
+      bizItems.push({ title, price, img, desc });
+      localStorage.setItem("bizItems", JSON.stringify(bizItems));
+      renderBusiness();
+      showNotification("Offre business ajoutée !");
+      document.getElementById("bizName").value = "";
+      document.getElementById("bizPrice").value = "";
+      document.getElementById("bizImg").value = "";
+      document.getElementById("bizDesc").value = "";
+    } else {
+      alert("Veuillez remplir tous les champs");
+    }
+  });
+  renderBusiness();
+  
+  // ======================== AUTHENTIFICATION ========================
+  let currentUser = localStorage.getItem("currentUser");
+  const authBtn = document.getElementById("authBtn");
+  
+  function updateAuthUI() {
+    if(currentUser) {
+      authBtn.innerHTML = `👤 ${currentUser}`;
+    } else {
+      authBtn.innerHTML = "🔑 Connexion";
+    }
+  }
+  
+  authBtn.addEventListener("click", () => {
+    if(currentUser) {
+      if(confirm("Se déconnecter ?")) {
+        localStorage.removeItem("currentUser");
+        currentUser = null;
+        updateAuthUI();
+        showNotification("Déconnecté avec succès");
+      }
+    } else {
+      let name = prompt("Entrez votre nom d'utilisateur :");
+      if(name) {
+        localStorage.setItem("currentUser", name);
+        currentUser = name;
+        updateAuthUI();
+        showNotification(`Bienvenue ${name} !`);
+      }
+    }
+  });
+  updateAuthUI();
+  
+  // ======================== CONTACT FORM ========================
+  document.getElementById("contactForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    showNotification("✅ Message envoyé ! Nous vous répondrons sous 24h.");
+    e.target.reset();
+  });
+  
+  // ======================== TÉLÉCHARGEMENT PROJET ========================
+  window.uploadProject = () => {
+    let description = prompt("Décrivez votre projet rapidement :");
+    if(description) {
+      showNotification("📎 Projet soumis ! Notre équipe vous contactera sous 48h.");
+      // Simuler envoi
+    }
+  };
+  
+  document.getElementById("downloadPortfolioBtn").addEventListener("click", () => {
+    showNotification("📦 Préparation du portfolio... Téléchargement démarré");
+    setTimeout(() => alert("Portfolio envoyé par email suite à votre demande"), 1000);
+  });
+  
+  // ======================== CHATBOT IA ========================
+  const chatbot = document.getElementById("chatbot");
+  const chatWindow = document.getElementById("chatWindow");
+  
+  chatbot.addEventListener("click", () => {
+    chatWindow.classList.toggle("active");
+  });
+  
+  document.getElementById("sendChat").addEventListener("click", () => {
+    let input = document.getElementById("chatInput");
+    let message = input.value;
+    if(message) {
+      let chatMessages = document.getElementById("chatMessages");
+      chatMessages.innerHTML += `<div style="margin-top:10px;">👤: ${message}</div>`;
+      // Réponse automatique simple
+      setTimeout(() => {
+        let response = "Merci pour votre message ! Notre équipe vous répondra sous peu. Pour une réponse immédiate, contactez notre WhatsApp: +243850406200";
+        chatMessages.innerHTML += `<div style="margin-top:10px;color:#e50914;">🤖: ${response}</div>`;
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }, 500);
+      input.value = "";
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+  });
+  
+  // ======================== BACK TO TOP & DARK MODE ========================
+  window.addEventListener("scroll", () => {
+    document.getElementById("backTop").style.display = window.scrollY > 500 ? "flex" : "none";
+    if(window.scrollY > 50) {
+      document.getElementById("navbar").classList.add("scrolled");
+    } else {
+      document.getElementById("navbar").classList.remove("scrolled");
+    }
+  });
+  
+  document.getElementById("backTop").addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+  
+  let darkMode = true;
+  document.getElementById("darkModeToggle").addEventListener("click", () => {
+    document.body.classList.toggle("light");
+    darkMode = !darkMode;
+    showNotification(darkMode ? "🌙 Mode sombre activé" : "☀️ Mode clair activé");
+  });
+  
+  // ======================== SCROLL REVEAL ========================
+  const sections = document.querySelectorAll("section");
+  const revealSection = (entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  };
+  const sectionObserver = new IntersectionObserver(revealSection, { threshold: 0.1 });
+  sections.forEach(section => sectionObserver.observe(section));
+  
+  // ======================== NOTIFICATIONS ========================
+  function showNotification(msg) {
+    let n = document.createElement("div");
+    n.className = "notification";
+    n.innerHTML = msg;
+    document.body.appendChild(n);
+    setTimeout(() => n.remove(), 3000);
+  }
+  
+  // ======================== LOADER ========================
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.getElementById("loader").classList.add("fade-out");
+      showNotification("✨ Bienvenue sur C-SERVICE ULTRA STUDIO");
+      updateLang();
+    }, 1000);
+  });
+  
+  // ======================== VISITEUR COUNT ========================
+  let visits = parseInt(localStorage.getItem("visits") || "0") + 1;
+  localStorage.setItem("visits", visits);
+</script>
 </body>
 </html>
